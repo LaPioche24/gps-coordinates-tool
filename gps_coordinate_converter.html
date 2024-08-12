@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Coordinate Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>GPS Coordinate Converter</h2>
+    
+    <div class="section">
+        <label for="decimalDegrees">Decimal degree (WGS84)</label>
+        <input type="text" id="decimalDegreesLat" placeholder="Lat: 51.000000° (N)">
+        <input type="text" id="decimalDegreesLon" placeholder="Lon: 10.000000° (E)">
+    </div>
+
+    <div class="section">
+        <label for="degreesMinutes">Degrees Minutes (WGS84)</label>
+        <input type="text" id="degreesMinutesLat" placeholder="N 51° 0.000000">
+        <input type="text" id="degreesMinutesLon" placeholder="E 10° 0.000000">
+    </div>
+
+    <div class="section">
+        <label for="degreesMinutesSeconds">Degrees Minutes Seconds (WGS84)</label>
+        <input type="text" id="degreesMinutesSecondsLat" placeholder="N 51° 0' 0.000">
+        <input type="text" id="degreesMinutesSecondsLon" placeholder="E 10° 0' 0.000">
+    </div>
+
+    <div class="section">
+        <label for="utm">UTM coordinates (WGS84)</label>
+        <input type="text" id="utmZ" placeholder="Z: 32U">
+        <input type="text" id="utmE" placeholder="E: 570168.862">
+        <input type="text" id="utmN" placeholder="N: 5650300.787">
+    </div>
+
+    <div class="btn-group">
+        <button onclick="convertCoordinates()">Convert</button>
+        <button onclick="getCurrentLocation()">My current location</button>
+    </div>
+</div>
+
+<script>
+    function convertCoordinates() {
+        alert('Coordinate conversion logic goes here.');
+    }
+
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('decimalDegreesLat').value = position.coords.latitude.toFixed(6);
+                document.getElementById('decimalDegreesLon').value = position.coords.longitude.toFixed(6);
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+</script>
+
+</body>
+</html>
